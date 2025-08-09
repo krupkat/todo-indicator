@@ -1,0 +1,15 @@
+# GitLab TODO Indicator Configuration Template
+# Copy this file to config.yaml and customize the values
+
+gitlab:
+  # Your GitLab instance URL
+  url: "https://gitlab.com"
+  
+  # Your GitLab personal access token (needs 'read_api' scope)
+  # Get this from GitLab → Settings → Access Tokens
+  access_token: "your-token-here"
+
+# Application settings
+app:
+  # Refresh interval in seconds (default: 300 = 5 minutes)
+  refresh_interval: 300
