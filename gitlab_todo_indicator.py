@@ -11,6 +11,7 @@ import threading
 import requests
 import subprocess
 import yaml
+import textwrap
 
 from pathlib import Path
 from typing import Optional, Dict, Any
@@ -184,7 +185,8 @@ class GitLabTodoIndicator:
         """Update the indicator label with current TODO count"""
         if self.last_error:
             self.indicator.set_label("❌", "Error")
-            self.status_item.set_label(f"Error: {self.last_error}")
+            formatted_error = textwrap.fill(self.last_error, width=80)
+            self.status_item.set_label(f"Error: {formatted_error}")
         else:
             # Display TODO count
             if self.todo_count == 0:
