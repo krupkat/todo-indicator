@@ -5,6 +5,8 @@ GitLab TODO Indicator
 A system tray application that displays the number of GitLab TODO items.
 """
 
+import argparse
+import os
 import sys
 import time
 import threading
@@ -26,7 +28,7 @@ class GitLabTodoIndicator:
     def __init__(self, config_path: str = "config.yaml"):
         # Load configuration from YAML file
         self.config = self.load_config(config_path)
-        
+
         # Extract configuration values
         self.gitlab_url = self.config['gitlab']['url']
         self.access_token = self.config['gitlab']['access_token']
@@ -34,6 +36,11 @@ class GitLabTodoIndicator:
 
         if not self.access_token or self.access_token == "your-token-here":
             print("Error: Please set a valid GitLab access token in config.yaml")
+            sys.exit(1)
+
+        if 'DISPLAY' not in os.environ:
+            print("Error: DISPLAY environment variable is not set. "
+                  "This application requires a graphical environment.")
             sys.exit(1)
 
         # Initialize the indicator
@@ -64,31 +71,33 @@ class GitLabTodoIndicator:
     def load_config(self, config_path: str) -> Dict[str, Any]:
         """Load configuration from YAML file"""
         config_file = Path(config_path)
-        
+
         if not config_file.exists():
             print(f"Error: Configuration file '{config_path}' not found")
             print("Please copy config.yaml.example to config.yaml and customize it")
             sys.exit(1)
-        
+
         try:
             with open(config_file, 'r') as f:
                 config = yaml.safe_load(f)
-            
+
             # Validate required fields
             required_fields = {
                 'gitlab': ['url', 'access_token'],
                 'app': ['refresh_interval']
             }
-            
+
             for section, fields in required_fields.items():
                 if section not in config:
-                    raise ValueError(f"Missing required section '{section}' in config")
+                    raise ValueError(
+                        f"Missing required section '{section}' in config")
                 for field in fields:
                     if field not in config[section]:
-                        raise ValueError(f"Missing required field '{section}.{field}' in config")
-            
+                        raise ValueError(
+                            f"Missing required field '{section}.{field}' in config")
+
             return config
-            
+
         except yaml.YAMLError as e:
             print(f"Error parsing YAML config file: {e}")
             sys.exit(1)
@@ -222,8 +231,6 @@ class GitLabTodoIndicator:
 
 def main():
     """Main entry point"""
-    import argparse
-    
     parser = argparse.ArgumentParser(description='GitLab TODO Indicator')
     parser.add_argument('--config', default='config.yaml',
                         help='Path to configuration file (default: config.yaml)')
