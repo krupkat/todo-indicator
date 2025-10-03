@@ -1,13 +1,7 @@
-with import <nixpkgs> { };
+{ pkgs ? import <nixpkgs> {} }:
 
-mkShell {
-  nativeBuildInputs = [
-    (python3.withPackages (pkgs: with pkgs; [
-      requests
-      pygobject3
-      pyyaml
-    ]))
-    libappindicator-gtk3
-    gobject-introspection
-  ];
+pkgs.mkShell {
+  nativeBuildInputs = with pkgs; [ rustc cargo gcc rustfmt clippy just pkg-config openssl.dev libxkbcommon.dev libxkbcommon.dev ];
+
+  RUST_SRC_PATH = "${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}";
 }

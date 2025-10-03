@@ -1,10 +1,10 @@
 # GitLab TODO Indicator
 
-A system tray application that displays the number of pending GitLab TODO items as an indicator in your desktop toolbar.
+A COSMIC desktop applet that displays the number of pending GitLab TODO items in your system taskbar.
 
 ## Features
 
-- Displays TODO count in system tray
+- Displays TODO count in COSMIC system panel
 - Automatic refresh at configurable intervals
 - Right-click menu with options to:
   - Refresh immediately
@@ -13,10 +13,11 @@ A system tray application that displays the number of pending GitLab TODO items 
 - Error handling and status display
 - Works with self-hosted GitLab instances
 - YAML-based configuration
+- Built with Rust and libcosmic for native COSMIC desktop integration
 
 ## Requirements
 
-- Linux desktop environment with system tray support
+- COSMIC desktop environment
 - GitLab personal access token with `read_api` scope
 
 ## Setup
@@ -37,9 +38,13 @@ A system tray application that displays the number of pending GitLab TODO items 
    ```
    Edit `config.yaml` and set your GitLab URL and access token.
 
-4. **Run the application:**
+4. **Build and run the application:**
    ```bash
-   ./gitlab_todo_indicator.py
+   # Build the release version
+   cargo build --release
+   
+   # Run the applet
+   ./target/release/gitlab-todo-indicator
    ```
 
 ## Configuration
@@ -59,24 +64,31 @@ app:
   refresh_interval: 300
 ```
 
-You can also specify a custom configuration file:
-```bash
-python3 gitlab_todo_indicator.py --config /path/to/custom-config.yaml
-```
-
 ## Usage
 
-Once running, the indicator will appear in your system tray showing:
+Once running, the applet will appear in your COSMIC system panel showing:
 - ✓ when you have no pending TODOs
 - A number indicating your pending TODO count
 - ❌ if there's an error connecting to GitLab
 
 Right-click the indicator for additional options.
 
+## Development
+
+This is a Rust application built with:
+- **libcosmic** - COSMIC desktop framework
+- **tokio** - Async runtime
+- **reqwest** - HTTP client for GitLab API
+- **serde_yaml** - YAML configuration parsing
+
 ## Troubleshooting
 
-### "Import yaml could not be resolved" errors
-These are expected when not in the Nix shell. Make sure you're running the application from within `nix-shell`.
+### Build Issues
+Make sure you're in the Nix shell which provides all necessary dependencies:
+```bash
+nix-shell
+cargo build --release
+```
 
 ### Indicator doesn't appear
 - Make sure your desktop environment supports system tray indicators

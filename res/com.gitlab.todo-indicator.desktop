@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=GitLab TODO Indicator
+Comment=A COSMIC applet that displays the number of GitLab TODO items
+Icon=com.gitlab.todo-indicator
+Exec=gitlab-todo-indicator
+Categories=System;
+StartupNotify=true
+NoDisplay=true

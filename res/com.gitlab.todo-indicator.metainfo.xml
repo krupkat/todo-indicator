@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>com.gitlab.todo-indicator</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-only</project_license>
+  <name>GitLab TODO Indicator</name>
+  <summary>A COSMIC applet that displays the number of GitLab TODO items</summary>
+  <description>
+    <p>
+      GitLab TODO Indicator is a system applet for the COSMIC desktop environment that displays
+      the number of pending TODO items from your GitLab instance directly in the system panel.
+      Click the indicator to refresh or open your GitLab TODOs in your browser.
+    </p>
+    <p>Features:</p>
+    <ul>
+      <li>Real-time display of pending GitLab TODO count</li>
+      <li>Configurable refresh intervals</li>
+      <li>Quick access to GitLab TODOs via browser</li>
+      <li>Error indication when API is unreachable</li>
+      <li>Lightweight and efficient</li>
+    </ul>
+  </description>
+  <url type="homepage">https://github.com/krupkat/todo-indicator</url>
+  <url type="bugtracker">https://github.com/krupkat/todo-indicator/issues</url>
+  <developer_name>Your Name</developer_name>
+  <categories>
+    <category>System</category>
+    <category>Utility</category>
+  </categories>
+  <keywords>
+    <keyword>gitlab</keyword>
+    <keyword>todo</keyword>
+    <keyword>indicator</keyword>
+    <keyword>applet</keyword>
+    <keyword>cosmic</keyword>
+  </keywords>
+</component>

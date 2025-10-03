@@ -1,0 +1,9 @@
+refresh-now = Refresh Now
+open-gitlab = Open GitLab TODOs
+status-error = Error
+status-fetching = Fetching...
+status-todos = TODOs
+updated-seconds = Updated {$seconds} seconds ago
+updated-minutes = Updated {$minutes} minutes ago
+gitlab-url = GitLab
+refresh-interval = Refresh interval
