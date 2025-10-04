@@ -51,6 +51,6 @@ impl Config {
     }
 
     pub fn default_path() -> &'static str {
-        "config.yaml"
+        "/run/secrets/rendered/todo-indicator.yaml"
     }
 }
