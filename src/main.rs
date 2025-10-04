@@ -5,7 +5,6 @@ use app::GitLabTodoApp;
 mod app;
 mod config;
 mod gitlab;
-mod localization;
 
 /// Main entry point for the GitLab TODO indicator applet
 fn main() -> cosmic::iced::Result {

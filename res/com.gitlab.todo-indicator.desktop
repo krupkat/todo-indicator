@@ -7,3 +7,6 @@ Exec=gitlab-todo-indicator
 Categories=System;
 StartupNotify=true
 NoDisplay=true
+X-CosmicApplet=true
+X-CosmicHoverPopup=Auto
+X-OverflowPriority=10

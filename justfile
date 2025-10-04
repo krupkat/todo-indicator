@@ -15,10 +15,6 @@ desktop := APPID + '.desktop'
 desktop-src := 'res' / desktop
 desktop-dst := clean(rootdir / prefix) / 'share' / 'applications' / desktop
 
-metainfo := APPID + '.metainfo.xml'
-metainfo-src := 'res' / metainfo
-metainfo-dst := clean(rootdir / prefix) / 'share' / 'metainfo' / metainfo
-
 # Default recipe which runs `just build-release`
 default: build-release
 
@@ -50,10 +46,8 @@ dev *args:
 install:
     install -Dm0755 {{bin-src}} {{bin-dst}}
     install -Dm0644 {{desktop-src}} {{desktop-dst}}
-    install -Dm0644 {{metainfo-src}} {{metainfo-dst}}
 
 # Uninstalls installed files
 uninstall:
     rm {{bin-dst}}
     rm {{desktop-dst}}
-    rm {{metainfo-dst}}

@@ -68,7 +68,7 @@ impl Application for GitLabTodoApp {
     fn init(core: Core, _flags: Self::Flags) -> (Self, Task<Self::Message>) {
         let mut app = GitLabTodoApp {
             core,
-            current_label: "⏳".to_string(), // Initial loading state
+            current_label: "view-refresh-symbolic".to_string(), // Initial loading state
             ..Default::default()
         };
 
@@ -154,16 +154,16 @@ impl Application for GitLabTodoApp {
                         self.todo_count = count;
                         self.last_error = None;
                         self.last_update = Some(Instant::now());
-                        // Update the label
+                        // Update the label with symbolic icons
                         self.current_label = if count == 0 {
-                            "✓".to_string()
+                            "dialog-information-symbolic".to_string()
                         } else {
-                            count.to_string()
+                            "dialog-error-symbolic".to_string()
                         };
                     }
                     Err(error) => {
                         self.last_error = Some(error);
-                        self.current_label = "❌".to_string();
+                        self.current_label = "dialog-warning-symbolic".to_string();
                     }
                 }
             }
@@ -189,7 +189,7 @@ impl Application for GitLabTodoApp {
     }
 
     fn view_window(&self, _id: Id) -> Element<Self::Message> {
-        let mut content_list = widget::list_column().padding(5).spacing(10);
+        let mut content_list = widget::list_column();
 
         // Status section
         let status_text = if let Some(ref error) = self.last_error {
@@ -202,7 +202,7 @@ impl Application for GitLabTodoApp {
 
         content_list = content_list.add(
             widget::text(status_text)
-                .size(16)
+                .size(12)
         );
 
         // Last update info
@@ -235,11 +235,11 @@ impl Application for GitLabTodoApp {
         if let Some(ref config) = self.config {
             content_list = content_list.add(
                 widget::text(format!("GitLab: {}", config.gitlab.url))
-                    .size(10)
+                    .size(12)
             );
             content_list = content_list.add(
                 widget::text(format!("Refresh: {}s", config.app.refresh_interval))
-                    .size(10)
+                    .size(12)
             );
         }
 
