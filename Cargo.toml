@@ -1,6 +1,6 @@
 [package]
 name = "gitlab-todo-indicator"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 license = "GPL-3.0-only"
 description = "A COSMIC applet that displays the number of GitLab TODO items"
