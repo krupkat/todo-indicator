@@ -3,7 +3,7 @@
 use cosmic::app::{Core, Task};
 use cosmic::iced::window::Id;
 use cosmic::iced::{Limits, Subscription};
-use cosmic::iced_winit::commands::popup::{destroy_popup, get_popup};
+use cosmic::iced::platform_specific::shell::wayland::commands::popup::{destroy_popup, get_popup};
 use cosmic::widget;
 use cosmic::{Application, Element};
 use std::time::{Duration, Instant};
@@ -250,7 +250,7 @@ impl Application for GitLabTodoApp {
         Some(Message::PopupClosed(id))
     }
 
-    fn style(&self) -> Option<cosmic::iced_runtime::Appearance> {
+    fn style(&self) -> Option<cosmic::iced::theme::Style> {
         Some(cosmic::applet::style())
     }
 }
